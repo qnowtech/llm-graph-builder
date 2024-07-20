@@ -79,9 +79,9 @@ app.add_middleware(
 )
 # app.add_middleware(GZipMiddleware, minimum_size=1000)
 
-is_gemini_enabled = os.environ.get("GEMINI_ENABLED", "False").lower() in ("true", "1", "yes")
-if is_gemini_enabled:
-    add_routes(app,ChatVertexAI(), path="/vertexai")
+# is_gemini_enabled = os.environ.get("GEMINI_ENABLED", "False").lower() in ("true", "1", "yes")
+# if is_gemini_enabled:
+#     add_routes(app,ChatVertexAI(), path="/vertexai")
 
 is_ollama_enabled = os.environ.get("OLLAMA_ENABLED", "False").lower() in ("true", "1", "yes")
 if is_ollama_enabled:
