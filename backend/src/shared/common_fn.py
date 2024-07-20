@@ -5,6 +5,7 @@ from langchain_community.embeddings.sentence_transformer import SentenceTransfor
 from langchain_google_vertexai import VertexAIEmbeddings
 from langchain_openai import OpenAIEmbeddings
 from langchain.docstore.document import Document
+from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.graphs import Neo4jGraph
 from langchain_community.graphs.graph_document import GraphDocument
 from typing import List
@@ -85,6 +86,10 @@ def load_embedding_model(embedding_model_name: str):
         )
         dimension = 768
         logging.info(f"Embedding: Using Vertex AI Embeddings , Dimension:{dimension}")
+    elif embedding_model_name == "llama2":        
+        embeddings = OllamaEmbeddings(model="llama2", embed_instruction="passage: ", num_gpu=1, temperature=0.0)
+        dimension = 768
+        logging.info(f"Embedding: Using Ollama llama2 Embeddings , Dimension:{dimension}")
     else:
         embeddings = SentenceTransformerEmbeddings(
             model_name="all-MiniLM-L6-v2"#, cache_folder="/embedding_model"

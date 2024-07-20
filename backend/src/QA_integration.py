@@ -7,10 +7,13 @@ from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
 from langchain.chains import RetrievalQAWithSourcesChain
 from langchain_openai import ChatOpenAI
+
 from langchain_openai import OpenAIEmbeddings
 from langchain_google_vertexai import VertexAIEmbeddings
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_vertexai import HarmBlockThreshold, HarmCategory
+from langchain_community.llms import Ollama
+
 import logging
 from langchain_community.chat_message_histories import Neo4jChatMessageHistory
 from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
@@ -22,7 +25,7 @@ import time
 
 load_dotenv()
 
-openai_api_key = os.environ.get('OPENAI_API_KEY')
+# openai_api_key = os.environ.get('OPENAI_API_KEY')
 
 EMBEDDING_MODEL = os.getenv('EMBEDDING_MODEL')
 EMBEDDING_FUNCTION , _ = load_embedding_model(EMBEDDING_MODEL)
@@ -83,7 +86,8 @@ def get_llm(model: str,max_tokens=1000) -> Any:
         "gemini-1.5-pro": "gemini-1.5-pro-preview-0409",
         "openai-gpt-4": "gpt-4-0125-preview",
         "diffbot" : "gpt-4-0125-preview",
-        "openai-gpt-4o":"gpt-4o"
+        "openai-gpt-4o":"gpt-4o",
+        "llama":"llama2"
          }
     if model in model_versions:
         model_version = model_versions[model]
@@ -104,7 +108,7 @@ def get_llm(model: str,max_tokens=1000) -> Any:
                 }
             )
         else:
-            llm = ChatOpenAI(model=model_version, temperature=0,max_tokens=max_tokens)
+            llm = Ollama(model="llama2", base_url='http://0.0.0.0:11434', temperature=0)
 
         return llm,model_version
 

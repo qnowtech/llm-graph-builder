@@ -12,7 +12,7 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_anthropic import ChatAnthropic
 from langchain_fireworks import ChatFireworks
 from langchain_aws import ChatBedrock
-from langchain_community.chat_models import ChatOllama
+from langchain_community.llms import Ollama
 import boto3
 import google.auth
 from src.shared.constants import MODEL_VERSIONS
@@ -42,11 +42,15 @@ def get_llm(model_version: str):
         )
     elif "openai" in model_version:
         model_name = MODEL_VERSIONS[model_version]
-        llm = ChatOpenAI(
-            api_key=os.environ.get("OPENAI_API_KEY"),
-            model=model_name,
-            temperature=0,
-        )
+        # llm = ChatOpenAI(
+        #     api_key=os.environ.get("OPENAI_API_KEY"),
+        #     model=model_name,
+        #     temperature=0,
+        # )
+
+        # harcoded ollama
+        llm = Ollama(model="llama2", base_url='http://localhost:11434', temperature=0)
+
 
     elif "azure" in model_version:
         model_name, api_endpoint, api_key, api_version = env_value.split(",")
@@ -88,8 +92,7 @@ def get_llm(model_version: str):
         )
 
     elif "ollama" in model_version:
-        model_name, base_url = env_value.split(",")
-        llm = ChatOllama(base_url=base_url, model=model_name)
+        llm = Ollama(model="llama2", base_url='http://localhost:11434', temperature=0)
 
     else:
         model_name = "diffbot"
@@ -130,12 +133,12 @@ def get_combined_chunks(chunkId_chunkDoc_list):
     return combined_chunk_document_list
 
 
-def get_graph_document_list(
+def     get_graph_document_list(
     llm, combined_chunk_document_list, allowedNodes, allowedRelationship
 ):
     futures = []
     graph_document_list = []
-    if llm.get_name() == "ChatOllama":
+    if llm.get_name() == "Ollama":
         node_properties = False
     else:
         node_properties = ["description"]

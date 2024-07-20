@@ -14,6 +14,7 @@ import asyncio
 import base64
 from langserve import add_routes
 from langchain_google_vertexai import ChatVertexAI
+from langchain_community.llms import Ollama
 from src.api_response import create_api_response
 from src.graphDB_dataAccess import graphDBdataAccess
 from src.graph_query import get_graph_results
@@ -34,6 +35,27 @@ from datetime import datetime, timezone
 from fastapi.middleware.gzip import GZipMiddleware
 import time
 import gc
+
+os.environ["NEO4J_URI"] = "neo4j+s://0d46bd1d.databases.neo4j.io:7687"
+os.environ["NEO4J_USERNAME"] = "neo4j"
+os.environ["NEO4J_PASSWORD"] = "UPRd_VJ9KeA9T2l80jfanIH0OljSwu-MWyMgNtab42c"
+os.environ["EMBEDDING_MODEL"] = "llama2"
+os.environ["IS_EMBEDDING"] = "true"
+os.environ["KNN_MIN_SCORE"] = "0.94"
+# Enable Gemini (default is False) | Can be False or True
+os.environ["GEMINI_ENABLED"] = False
+# Enable Ollama (default is False) | Can be False or True
+os.environ["GEMINI_ENABLED"] = True
+# Enable Google Cloud logs (default is False) | Can be False or True
+os.environ["GCP_LOG_METRICS_ENABLED"] = False
+os.environ["NUMBER_OF_CHUNKS_TO_COMBINE"] = 6
+os.environ["UPDATE_GRAPH_CHUNKS_PROCESSED"] = 20
+os.environ["NEO4J_DATABASE"] = "neo4j"
+os.environ["AWS_ACCESS_KEY_ID"] =  "AKIAQ3EGQLJDABKR6T5Y"
+os.environ["AWS_SECRET_ACCESS_KEY"] = "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"
+os.environ["LLM_MODEL_CONFIG_model_version"] = "llama2"
+os.environ["ENTITY_EMBEDDING"] = False
+
 
 logger = CustomLogger()
 CHUNK_DIR = os.path.join(os.path.dirname(__file__), "chunks")
@@ -63,6 +85,10 @@ app.add_middleware(
 is_gemini_enabled = os.environ.get("GEMINI_ENABLED", "False").lower() in ("true", "1", "yes")
 if is_gemini_enabled:
     add_routes(app,ChatVertexAI(), path="/vertexai")
+
+is_ollama_enabled = os.environ.get("OLLAMA_ENABLED", "False").lower() in ("true", "1", "yes")
+if is_ollama_enabled:
+    add_routes(app, Ollama(model="llama2", base_url='http://0.0.0.0:11434', temperature=0), path="/show")
 
 app.add_api_route("/health", health([healthy_condition, healthy]))
 
