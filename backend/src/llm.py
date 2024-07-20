@@ -49,7 +49,7 @@ def get_llm(model_version: str):
         # )
 
         # harcoded ollama
-        llm = Ollama(model="llama2", base_url='http://localhost:11434', temperature=0)
+        llm = Ollama(model="llama2", num_gpu=1,  base_url='http://localhost:11434', temperature=0)
 
 
     elif "azure" in model_version:
@@ -91,8 +91,8 @@ def get_llm(model_version: str):
             client=bedrock_client, model_id=model_name, model_kwargs=dict(temperature=0)
         )
 
-    elif "ollama" in model_version:
-        llm = Ollama(model="llama2", base_url='http://localhost:11434', temperature=0)
+    elif "llama2" in model_version:
+        llm = Ollama(model="llama2", num_gpu=1, base_url='http://localhost:11434', temperature=0)
 
     else:
         model_name = "diffbot"
@@ -138,7 +138,7 @@ def     get_graph_document_list(
 ):
     futures = []
     graph_document_list = []
-    if llm.get_name() == "Ollama":
+    if llm.get_name() == "llama2":
         node_properties = False
     else:
         node_properties = ["description"]

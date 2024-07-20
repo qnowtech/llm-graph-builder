@@ -74,7 +74,8 @@ Instructions:
 - Use the Chat History Summary: {chat_summary} to provide context-aware responses.
 - Refer to Relevant Information: {vector_result} only if it directly relates to the query.
 - Cite sources clearly when using Relevant Information in your response [Sources: {sources}] without fail. The Source must be printed only at the last in the format [Source: source1,source2] . Duplicate sources should be removed.
-Ensure that answers are straightforward and context-aware, focusing on being relevant and concise.
+Ensure that answers are straightforward and context-aware, focusing on being relevant and concise
+- ALWAYS RESPOND IN SPANISH ONLY.
 """
 
 def get_llm(model: str,max_tokens=1000) -> Any:
@@ -108,7 +109,7 @@ def get_llm(model: str,max_tokens=1000) -> Any:
                 }
             )
         else:
-            llm = Ollama(model="llama2", base_url='http://0.0.0.0:11434', temperature=0)
+            llm = Ollama(model="llama2", num_gpu=1,  base_url='http://0.0.0.0:11434', temperature=0)
 
         return llm,model_version
 
