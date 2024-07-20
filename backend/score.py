@@ -43,9 +43,9 @@ os.environ["EMBEDDING_MODEL"] = "llama2"
 os.environ["IS_EMBEDDING"] = "true"
 os.environ["KNN_MIN_SCORE"] = "0.94"
 # Enable Gemini (default is False) | Can be False or True
-os.environ["GEMINI_ENABLED"] = False
+os.environ["GEMINI_ENABLED"] = "False"
 # Enable Ollama (default is False) | Can be False or True
-os.environ["GEMINI_ENABLED"] = True
+os.environ["GEMINI_ENABLED"] = "True"
 # Enable Google Cloud logs (default is False) | Can be False or True
 os.environ["GCP_LOG_METRICS_ENABLED"] = False
 os.environ["NUMBER_OF_CHUNKS_TO_COMBINE"] = 6
