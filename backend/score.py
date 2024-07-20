@@ -47,12 +47,12 @@ os.environ["GEMINI_ENABLED"] = "False"
 # Enable Ollama (default is False) | Can be False or True
 os.environ["GEMINI_ENABLED"] = "True"
 # Enable Google Cloud logs (default is False) | Can be False or True
-os.environ["GCP_LOG_METRICS_ENABLED"] = False
+os.environ["GCP_LOG_METRICS_ENABLED"] = "False"
 os.environ["NUMBER_OF_CHUNKS_TO_COMBINE"] = 6
 os.environ["UPDATE_GRAPH_CHUNKS_PROCESSED"] = 20
 os.environ["NEO4J_DATABASE"] = "neo4j"
 os.environ["LLM_MODEL_CONFIG_model_version"] = "llama2"
-os.environ["ENTITY_EMBEDDING"] = False
+os.environ["ENTITY_EMBEDDING"] = "False"
 os.environ["LLM_MODELS"]="llama2"
 
 logger = CustomLogger()
