@@ -5,7 +5,8 @@ MODEL_VERSIONS = {
         "openai-gpt-4": "gpt-4-0125-preview",
         "diffbot" : "gpt-4o",
         "openai-gpt-4o":"gpt-4o",
-        "groq-llama3" : "llama3-70b-8192"
+        "groq-llama3" : "llama3-70b-8192",
+        "llama2": "llama2"
          }
 OPENAI_MODELS = ["openai-gpt-3.5", "openai-gpt-4o"]
 GEMINI_MODELS = ["gemini-1.0-pro", "gemini-1.5-pro"]
@@ -24,7 +25,7 @@ CHAT_EMBEDDING_FILTER_SCORE_THRESHOLD = 0.10
 CHAT_TOKEN_CUT_OFF = {
      ("openai-gpt-3.5",'azure_ai_gpt_35',"gemini-1.0-pro","gemini-1.5-pro","groq-llama3",'groq_llama3_70b','anthropic_claude_3_5_sonnet','fireworks_llama_v3_70b','bedrock_claude_3_5_sonnet', ) : 4, 
      ("openai-gpt-4","diffbot" ,'azure_ai_gpt_4o',"openai-gpt-4o") : 28,
-     ("ollama_llama3") : 2  
+     ("llama_llama2") : 2  
 } 
 
 

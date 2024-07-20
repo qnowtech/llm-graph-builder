@@ -50,9 +50,16 @@ os.environ["GEMINI_ENABLED"] = "True"
 os.environ["NUMBER_OF_CHUNKS_TO_COMBINE"] = "6"
 os.environ["UPDATE_GRAPH_CHUNKS_PROCESSED"] = "20"
 os.environ["NEO4J_DATABASE"] = "neo4j"
-os.environ["LLM_MODEL_CONFIG_model_version"] = "llama2"
+os.environ["LLM_MODEL_CONFIG_model_version"] = "llama2_llama2"
 os.environ["ENTITY_EMBEDDING"] = "False"
 os.environ["LLM_MODELS"]="llama2"
+
+# Logs system
+logging.basicConfig(
+    filename="llm_builder.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
 
 logger = CustomLogger()
 CHUNK_DIR = os.path.join(os.path.dirname(__file__), "chunks")
@@ -85,7 +92,7 @@ app.add_middleware(
 
 is_ollama_enabled = os.environ.get("OLLAMA_ENABLED", "False").lower() in ("true", "1", "yes")
 if is_ollama_enabled:
-    add_routes(app, Ollama(model="llama2", base_url='http://0.0.0.0:11434', temperature=0, num_gpu=1), path="/show")
+    add_routes(app, Ollama(model="llama2", base_url='http://localhost:11434', temperature=0, num_gpu=1), path="/show")
 
 app.add_api_route("/health", health([healthy_condition, healthy]))
 

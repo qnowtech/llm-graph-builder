@@ -11,11 +11,9 @@ const App: React.FC = () => {
     <>
       {APP_SOURCES != undefined && APP_SOURCES.includes('gcs') ? (
         <ErrorBoundary>
-          <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID as string}>
-            <ThemeWrapper>
-              <QuickStarter />
-            </ThemeWrapper>
-          </GoogleOAuthProvider>
+          <ThemeWrapper>
+            <QuickStarter />
+          </ThemeWrapper>
         </ErrorBoundary>
       ) : (
         <ErrorBoundary>
