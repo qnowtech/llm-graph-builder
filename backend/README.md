@@ -69,3 +69,32 @@ Update the environment variable in `.env` file.
 
 ## Contact
 For questions or support, feel free to contact us at christopher.crosbie@neo4j.com or michael.hunger@neo4j.com
+
+## Build and Run:
+
+Build the image:
+```bash
+docker build -t llm-builder-backend:v0.1 -f Dockerfile .
+```
+
+Run on detached mode type:
+```bash
+sudo docker run -p 8000:8000 -d \
+  -e NEO4J_URI="neo4j+s://xxxxxxxxx.databases.neo4j.io:7687" \
+  -e NEO4J_USERNAME="neo4j" \
+  -e NEO4J_PASSWORD="XXXXXXXXXXXXXXXXXXXXXXXXXX" \
+  -e EMBEDDING_MODEL="llama2" \
+  -e IS_EMBEDDING="true" \
+  -e KNN_MIN_SCORE="0.94" \
+  -e GEMINI_ENABLED="False" \
+  -e OLLAMA_ENABLED="True" \
+  -e NUMBER_OF_CHUNKS_TO_COMBINE="6" \
+  -e UPDATE_GRAPH_CHUNKS_PROCESSED="20" \
+  -e NEO4J_DATABASE="neo4j" \
+  -e LLM_MODEL_CONFIG_model_version="llama2" \
+  -e ENTITY_EMBEDDING="False" \
+  -e LLM_MODELS="llama2" \
+  -e AWS_ACCESS_KEY_ID="XXXXXXXXXXXXXXXXXXXX" \
+  -e AWS_SECRET_ACCESS_KEY="XXXXXXXXXXXXXXXX" \
+  llm-builder-backend:v0.1.0
+```
