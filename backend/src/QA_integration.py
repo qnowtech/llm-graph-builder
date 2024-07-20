@@ -94,22 +94,22 @@ def get_llm(model: str,max_tokens=1000) -> Any:
         model_version = model_versions[model]
         logging.info(f"Chat Model: {model}, Model Version: {model_version}")
         
-        if "Gemini" in model:
-            llm = ChatVertexAI(
-                model_name=model_version,
-                convert_system_message_to_human=True,
-                max_tokens=max_tokens,
-                temperature=0,
-                safety_settings={
-                    HarmCategory.HARM_CATEGORY_UNSPECIFIED: HarmBlockThreshold.BLOCK_NONE, 
-                    HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
-                    HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE, 
-                    HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE, 
-                    HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE
-                }
-            )
-        else:
-            llm = Ollama(model="llama2", num_gpu=1,  base_url='http://0.0.0.0:11434', temperature=0)
+        # if "Gemini" in model:
+        #     llm = ChatVertexAI(
+        #         model_name=model_version,
+        #         convert_system_message_to_human=True,
+        #         max_tokens=max_tokens,
+        #         temperature=0,
+        #         safety_settings={
+        #             HarmCategory.HARM_CATEGORY_UNSPECIFIED: HarmBlockThreshold.BLOCK_NONE, 
+        #             HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT: HarmBlockThreshold.BLOCK_NONE,
+        #             HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE, 
+        #             HarmCategory.HARM_CATEGORY_HARASSMENT: HarmBlockThreshold.BLOCK_NONE, 
+        #             HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT: HarmBlockThreshold.BLOCK_NONE
+        #         }
+        #     )
+        # else:
+        llm = Ollama(model="llama2", num_gpu=1,  base_url='http://0.0.0.0:11434', temperature=0)
 
         return llm,model_version
 
