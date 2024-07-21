@@ -12,7 +12,6 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_google_vertexai import VertexAIEmbeddings
 from langchain_google_vertexai import ChatVertexAI
 from langchain_google_vertexai import HarmBlockThreshold, HarmCategory
-from langchain_community.llms import Ollama
 
 import logging
 from langchain_community.chat_message_histories import Neo4jChatMessageHistory
@@ -109,7 +108,7 @@ def get_llm(model: str,max_tokens=1000) -> Any:
         #         }
         #     )
         # else:
-        llm = Ollama(model="llama2", num_gpu=1,  base_url='http://54.162.148.156:11434', temperature=0)
+        llm = ChatOllama(model="llama2", num_gpu=1,  base_url='http://54.162.148.156:11434', temperature=0)
 
         return llm,model_version
 

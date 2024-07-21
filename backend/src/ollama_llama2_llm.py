@@ -8,7 +8,7 @@ from typing import List
 from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_core.documents import Document
 from src.llm import get_combined_chunks, get_llm
-from langchain_community.llms import Ollama
+from langchain_community.chat_models import ChatOllama
 
 load_dotenv()
 logging.basicConfig(format='%(asctime)s - %(message)s',level='INFO')
@@ -36,7 +36,7 @@ def get_graph_from_Ollama_Llama2(model_version,
     #api_key = os.environ.get('GROQ_API_KEY') 
     #llm,model_name = get_llm(model_version)
             
-    llm = Ollama(model="llama2", num_gpu=1,  base_url='http://54.162.148.156:11434', temperature=0)
+    llm = ChatOllama(model="llama2", num_gpu=1,  base_url='http://54.162.148.156:11434', temperature=0)
     llm_transformer = LLMGraphTransformer(llm=llm, node_properties=["description"], allowed_nodes=allowedNodes, allowed_relationships=allowedRelationship)
     
     with ThreadPoolExecutor(max_workers=10) as executor:

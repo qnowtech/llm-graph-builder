@@ -14,7 +14,7 @@ import asyncio
 import base64
 from langserve import add_routes
 from langchain_google_vertexai import ChatVertexAI
-from langchain_community.llms import Ollama
+from langchain_community.chat_models import ChatOllama
 from src.api_response import create_api_response
 from src.graphDB_dataAccess import graphDBdataAccess
 from src.graph_query import get_graph_results
@@ -74,7 +74,7 @@ app.add_middleware(
 
 is_ollama_enabled = os.environ.get("OLLAMA_ENABLED", "False").lower() in ("true", "1", "yes")
 if is_ollama_enabled:
-    add_routes(app, Ollama(model="llama2", base_url='http://54.162.148.156:11434', temperature=0, num_gpu=1), path="/show")
+    add_routes(app, ChatOllama(model="llama2", base_url='http://54.162.148.156:11434', temperature=0, num_gpu=1), path="/show")
 
 app.add_api_route("/health", health([healthy_condition, healthy]))
 
