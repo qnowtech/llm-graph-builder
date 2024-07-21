@@ -8,11 +8,12 @@ from typing import List
 from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_core.documents import Document
 from src.llm import get_combined_chunks, get_llm
+from langchain_community.llms import Ollama
 
 load_dotenv()
 logging.basicConfig(format='%(asctime)s - %(message)s',level='INFO')
 
-def get_graph_from_Groq_Llama3(model_version,
+def get_graph_from_Ollama_Llama2(model_version,
                             graph: Neo4jGraph,
                             chunkId_chunkDoc_list: List, 
                             allowedNodes, 
@@ -33,7 +34,9 @@ def get_graph_from_Groq_Llama3(model_version,
     graph_document_list = []
     combined_chunk_document_list = get_combined_chunks(chunkId_chunkDoc_list)
     #api_key = os.environ.get('GROQ_API_KEY') 
-    llm,model_name = get_llm(model_version)
+    #llm,model_name = get_llm(model_version)
+            
+    llm = Ollama(model="llama2", num_gpu=1,  base_url='http://host.docker.internal:11434', temperature=0)
     llm_transformer = LLMGraphTransformer(llm=llm, node_properties=["description"], allowed_nodes=allowedNodes, allowed_relationships=allowedRelationship)
     
     with ThreadPoolExecutor(max_workers=10) as executor:

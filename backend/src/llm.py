@@ -41,7 +41,7 @@ def get_llm(model_version: str):
             },
         )
     elif "openai" in model_version:
-        model_name = MODEL_VERSIONS[model_version]
+        # model_name = MODEL_VERSIONS[model_version]
         # llm = ChatOpenAI(
         #     api_key=os.environ.get("OPENAI_API_KEY"),
         #     model=model_name,
