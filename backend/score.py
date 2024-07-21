@@ -92,7 +92,7 @@ app.add_middleware(
 
 is_ollama_enabled = os.environ.get("OLLAMA_ENABLED", "False").lower() in ("true", "1", "yes")
 if is_ollama_enabled:
-    add_routes(app, Ollama(model="llama2", base_url='http://0.0.0.0:11434', temperature=0, num_gpu=1), path="/show")
+    add_routes(app, Ollama(model="llama2", base_url='http://host.docker.internal:11434', temperature=0, num_gpu=1), path="/show")
 
 app.add_api_route("/health", health([healthy_condition, healthy]))
 
