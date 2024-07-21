@@ -109,7 +109,7 @@ def get_llm(model: str,max_tokens=1000) -> Any:
         #         }
         #     )
         # else:
-        llm = Ollama(model="llama2", num_gpu=1,  base_url='http://localhost:11434', temperature=0)
+        llm = Ollama(model="llama2", num_gpu=1,  base_url='http://0.0.0.0:11434', temperature=0)
 
         return llm,model_version
 
