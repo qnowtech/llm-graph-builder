@@ -12,7 +12,7 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_anthropic import ChatAnthropic
 from langchain_fireworks import ChatFireworks
 from langchain_aws import ChatBedrock
-from langchain_ollama import ChatOllama
+from langchain_community.chat_models import ChatOllama
 
 import boto3
 import google.auth
