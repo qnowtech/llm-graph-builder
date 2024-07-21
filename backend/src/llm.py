@@ -139,7 +139,7 @@ def     get_graph_document_list(
     futures = []
     graph_document_list = []
     if llm.get_name() == "llama2":
-        node_properties = False
+        node_properties = ["description"]
     else:
         node_properties = ["description"]
     llm_transformer = LLMGraphTransformer(
