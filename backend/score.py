@@ -36,24 +36,6 @@ from fastapi.middleware.gzip import GZipMiddleware
 import time
 import gc
 
-os.environ["NEO4J_URI"] = "neo4j+s://0d46bd1d.databases.neo4j.io:7687"
-os.environ["NEO4J_USERNAME"] = "neo4j"
-os.environ["NEO4J_PASSWORD"] = "UPRd_VJ9KeA9T2l80jfanIH0OljSwu-MWyMgNtab42c"
-os.environ["EMBEDDING_MODEL"] = "llama2"
-os.environ["IS_EMBEDDING"] = "true"
-os.environ["KNN_MIN_SCORE"] = "0.94"
-# Enable Gemini (default is False) | Can be False or True
-os.environ["GEMINI_ENABLED"] = "False"
-# Enable Ollama (default is False) | Can be False or True
-os.environ["GEMINI_ENABLED"] = "True"
-# Enable Google Cloud logs (default is False) | Can be False or True
-os.environ["NUMBER_OF_CHUNKS_TO_COMBINE"] = "6"
-os.environ["UPDATE_GRAPH_CHUNKS_PROCESSED"] = "20"
-os.environ["NEO4J_DATABASE"] = "neo4j"
-os.environ["LLM_MODEL_CONFIG_llama2"] = "llama2"
-os.environ["ENTITY_EMBEDDING"] = "False"
-os.environ["LLM_MODELS"]="llama2"
-
 # Logs system
 logging.basicConfig(
     filename="llm_builder.log",
