@@ -49,7 +49,7 @@ def get_llm(model_version: str):
         # )
 
         # harcoded ollama
-        llm = Ollama(model="llama2", num_gpu=1,  base_url='http://54.162.148.156:11434', temperature=0)
+        llm = Ollama(model="llama2", num_gpu=1,  base_url='http://host.docker.internal:11434', temperature=0)
 
 
     elif "azure" in model_version:
@@ -92,7 +92,7 @@ def get_llm(model_version: str):
         )
 
     elif "llama2" in model_version:
-        llm = Ollama(model="llama2", num_gpu=1, base_url='http://54.162.148.156:11434', temperature=0)
+        llm = Ollama(model="llama2", num_gpu=1, base_url='http://host.docker.internal:11434', temperature=0)
 
     else:
         model_name = "diffbot"
