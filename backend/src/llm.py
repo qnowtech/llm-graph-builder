@@ -12,7 +12,8 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 from langchain_anthropic import ChatAnthropic
 from langchain_fireworks import ChatFireworks
 from langchain_aws import ChatBedrock
-from langchain_community.llms import Ollama
+from langchain_ollama import ChatOllama
+
 import boto3
 import google.auth
 from src.shared.constants import MODEL_VERSIONS
@@ -41,17 +42,12 @@ def get_llm(model_version: str):
             },
         )
     elif "openai" in model_version:
-        # model_name = MODEL_VERSIONS[model_version]
-        # llm = ChatOpenAI(
-        #     api_key=os.environ.get("OPENAI_API_KEY"),
-        #     model=model_name,
-        #     temperature=0,
-        # )
-
-        # harcoded ollama
-        llm = Ollama(model="llama2", num_gpu=1,  base_url='http://54.162.148.156:11434', temperature=0)
-
-
+        model_name = MODEL_VERSIONS[model_version]
+        llm = ChatOpenAI(
+            api_key=os.environ.get("OPENAI_API_KEY"),
+            model=model_name,
+            temperature=0,
+        )
     elif "azure" in model_version:
         model_name, api_endpoint, api_key, api_version = env_value.split(",")
         llm = AzureChatOpenAI(
@@ -92,7 +88,7 @@ def get_llm(model_version: str):
         )
 
     elif "llama2" in model_version:
-        llm = Ollama(model="llama2", num_gpu=1, base_url='http://54.162.148.156:11434', temperature=0)
+        llm = ChatOllama(model="llama2", num_gpu=1, base_url='http://54.162.148.156:11434', temperature=0)
 
     else:
         model_name = "diffbot"
