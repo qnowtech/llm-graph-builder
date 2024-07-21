@@ -74,7 +74,7 @@ For questions or support, feel free to contact us at christopher.crosbie@neo4j.c
 
 Build the image:
 ```bash
-docker build -t llm-builder-backend:v0.1 -f Dockerfile .
+sudo docker build --no-cache --force-rm -t llm-builder-backend:v0.1 -f Dockerfile .
 ```
 
 Run on detached mode type:
