@@ -50,7 +50,7 @@ os.environ["GEMINI_ENABLED"] = "True"
 os.environ["NUMBER_OF_CHUNKS_TO_COMBINE"] = "6"
 os.environ["UPDATE_GRAPH_CHUNKS_PROCESSED"] = "20"
 os.environ["NEO4J_DATABASE"] = "neo4j"
-os.environ["LLM_MODEL_CONFIG_model_version"] = "llama2_llama2"
+os.environ["LLM_MODEL_CONFIG_llama2"] = "llama2"
 os.environ["ENTITY_EMBEDDING"] = "False"
 os.environ["LLM_MODELS"]="llama2"
 

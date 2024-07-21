@@ -43,7 +43,7 @@ export const llms =
         'gemini-1.5-pro',
         'azure_ai_gpt_35',
         'azure_ai_gpt_4o',
-        'llama_llama2',
+        'llama2',
         'groq_llama3_70b',
         'anthropic_claude_3_5_sonnet',
         'fireworks_llama_v3_70b',
