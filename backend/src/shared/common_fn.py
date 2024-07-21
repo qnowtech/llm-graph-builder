@@ -88,7 +88,7 @@ def load_embedding_model(embedding_model_name: str):
         logging.info(f"Embedding: Using Vertex AI Embeddings , Dimension:{dimension}")
     elif embedding_model_name == "llama2":        
         embeddings = OllamaEmbeddings(model="llama2", base_url='http://54.162.148.156:11434', embed_instruction="passage: ", num_gpu=1, temperature=0.0)
-        dimension = 768
+        dimension = 4096
         logging.info(f"Embedding: Using Ollama llama2 Embeddings , Dimension:{dimension}")
     else:
         embeddings = SentenceTransformerEmbeddings(
