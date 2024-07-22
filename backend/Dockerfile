@@ -17,7 +17,7 @@ RUN apt-get update && \
 # Copy requirements file and install Python dependencies
 COPY requirements.txt /code/
 # --no-cache-dir --upgrade 
-RUN pip install -r requirements.txt 
+RUN pip install -r requirements.txt
 # Copy application code
 COPY . /code
 # Set command
