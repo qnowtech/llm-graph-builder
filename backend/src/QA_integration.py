@@ -108,7 +108,7 @@ def get_llm(model: str,max_tokens=1000) -> Any:
         #         }
         #     )
         # else:
-        llm = ChatOllama(model="llama2", num_gpu=1,  base_url='http://18.212.141.255:11434', temperature=0)
+        llm = ChatOllama(model="llama3", num_gpu=1,  base_url='http://18.212.141.255:11434', temperature=0)
 
         return llm,model_version
 

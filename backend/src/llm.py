@@ -88,7 +88,7 @@ def get_llm(model_version: str):
         )
 
     elif "llama2" in model_version:
-        llm = ChatOllama(model="llama2", num_gpu=1, base_url='http://18.212.141.255:11434', temperature=0)
+        llm = ChatOllama(model="llama3", num_gpu=1, base_url='http://18.212.141.255:11434', temperature=0)
 
     else:
         model_name = "diffbot"

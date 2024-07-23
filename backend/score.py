@@ -74,7 +74,7 @@ app.add_middleware(
 
 is_ollama_enabled = os.environ.get("OLLAMA_ENABLED", "False").lower() in ("true", "1", "yes")
 if is_ollama_enabled:
-    add_routes(app, ChatOllama(model="llama2", base_url='http://18.212.141.255:11434', temperature=0, num_gpu=1), path="/show")
+    add_routes(app, ChatOllama(model="llama3", base_url='http://18.212.141.255:11434', temperature=0, num_gpu=1), path="/show")
 
 app.add_api_route("/health", health([healthy_condition, healthy]))
 
