@@ -36,7 +36,7 @@ def get_graph_from_Ollama_Llama2(model_version,
     #api_key = os.environ.get('GROQ_API_KEY') 
     #llm,model_name = get_llm(model_version)
             
-    llm = ChatOllama(model="llama3", num_gpu=1,  base_url='http://18.212.141.255:11434', temperature=0)
+    llm = ChatOllama(model="llama3.1", num_gpu=1,  base_url='http://54.172.230.5:11434', temperature=0)
     llm_transformer = LLMGraphTransformer(llm=llm, allowed_nodes=allowedNodes, allowed_relationships=allowedRelationship)
     
     with ThreadPoolExecutor(max_workers=10) as executor:
