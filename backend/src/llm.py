@@ -89,6 +89,7 @@ def get_llm(model_version: str):
 
     elif "llama2" in model_version:
         llm = ChatOllama(model="llama3.1", num_gpu=1, base_url='http://54.172.230.5:11434', temperature=0)
+        model_name = "llama2"
 
     else:
         model_name = "diffbot"
@@ -97,7 +98,7 @@ def get_llm(model_version: str):
             extract_types=["entities", "facts"],
         )
     logging.info(f"Model created - Model Version: {model_version}")
-    return llm
+    return llm, model_name
 
 
 def get_combined_chunks(chunkId_chunkDoc_list):
