@@ -97,7 +97,7 @@ def get_llm(model_version: str):
             extract_types=["entities", "facts"],
         )
     logging.info(f"Model created - Model Version: {model_version}")
-    return llm, model_name
+    return llm
 
 
 def get_combined_chunks(chunkId_chunkDoc_list):
